@@ -14,7 +14,7 @@ var (
 	apiSecret = os.Getenv("RTM_API_SECRET")
 )
 
-func newParams() url.Values {
+func newParams(apiKey string) url.Values {
 
 	v := url.Values{}
 	v.Add("api_key", apiKey)
@@ -23,7 +23,7 @@ func newParams() url.Values {
 	return v
 }
 
-func sign(values url.Values) string {
+func sign(values url.Values, apiSecret string) string {
 	var keys []string
 	for k := range values {
 		keys = append(keys, k)
