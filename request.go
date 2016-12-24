@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
-	"os"
 	"sort"
 	"strings"
 
@@ -20,18 +19,13 @@ const (
 	AuthenticationURL = "https://www.rememberthemilk.com/services/auth/"
 )
 
-var (
-	apiKey    = os.Getenv("RTM_API_KEY")
-	apiSecret = os.Getenv("RTM_API_SECRET")
-)
-
 func appendRequiredParams(v url.Values, apiKey string, apiSecret string) url.Values {
 
-	v.Add("api_key", apiKey)
-	v.Add("format", "json")
+	v.Set("api_key", apiKey)
+	v.Set("format", "json")
 
 	// add sign
-	v.Add("api_sig", sign(v, apiSecret))
+	v.Set("api_sig", sign(v, apiSecret))
 
 	return v
 }
