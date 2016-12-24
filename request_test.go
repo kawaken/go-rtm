@@ -13,9 +13,7 @@ func TestSign(t *testing.T) {
 	params.Add("feg", "bar")
 	params.Add("abc", "baz")
 
-	apiSecret = "BANANAS"
-
-	s := sign(params, apiSecret)
+	s := sign(params, "BANANAS")
 
 	if s != "82044aae4dd676094f23f1ec152159ba" {
 		t.Fatalf("api sign is invalid result: %s", s)
