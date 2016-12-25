@@ -1,0 +1,6 @@
+rtm.auth.checkToken auth_token
+rtm.auth.getFrob
+rtm.auth.getToken frob
+rtm.contacts.add timeline,contact
+rtm.contacts.delete timeline,contact_id
+rtm.contacts.getList
