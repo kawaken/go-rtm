@@ -80,6 +80,10 @@ func NewClient(apiKey string, apiSecret string) (*Client, error) {
 // Do requests a RTM API method.
 func (c *Client) Do(m *methods.Method) (*http.Response, error) {
 
+	if m.Params.Get("method") == "" {
+		return nil, fmt.Errorf("API method name is not defined")
+	}
+
 	v := appendRequiredParams(m.Params, c.apiKey, c.apiSecret)
 
 	req, err := http.NewRequest(
