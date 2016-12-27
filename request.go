@@ -93,5 +93,6 @@ func (c *Client) Do(m *methods.Method) (*http.Response, error) {
 	}
 
 	req.Header.Set("User-Agent", "go-rtm-client")
+	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 	return c.httpClient.Do(req)
 }
