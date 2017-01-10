@@ -4,3 +4,49 @@ rtm.auth.getToken frob
 rtm.contacts.add timeline,contact
 rtm.contacts.delete timeline,contact_id
 rtm.contacts.getList
+rtm.groups.add timeline,group
+rtm.groups.addContact timeline,group_id,contact_id
+rtm.groups.delete timeline,group_id
+rtm.groups.getList
+rtm.groups.removeContact timeline,group_id,contact_id
+rtm.lists.add timeline,name,filter
+rtm.lists.archive timeline,list_id
+rtm.lists.delete timeline,list_id
+rtm.lists.getList
+rtm.lists.setDefaultList timeline,list_id
+rtm.lists.setName timeline,list_id,name
+rtm.lists.unarchive timeline,list_id
+rtm.locations.getList
+rtm.reflection.getMethodInfo method_name
+rtm.reflection.getMethods
+rtm.settings.getList
+rtm.tasks.add timeline,list_id,name,parse,parent_task_id
+rtm.tasks.addTags timeline,list_id,taskseries_id,task_id,tags
+rtm.tasks.complete timeline,list_id,taskseries_id,task_id
+rtm.tasks.delete timeline,list_id,taskseries_id,task_id
+rtm.tasks.getList list_id,filter,last_sync,callback
+rtm.tasks.movePriority timeline,list_id,taskseries_id,task_id,direction
+rtm.tasks.moveTo timeline,from_list_id,to_list_id,taskseries_id,task_id
+rtm.tasks.notes.add timeline,list_id,taskseries_id,task_id,note_title,note_text
+rtm.tasks.notes.delete timeline,note_id
+rtm.tasks.notes.edit timeline,note_id,note_title,note_text
+rtm.tasks.postpone timeline,list_id,taskseries_id,task_id
+rtm.tasks.removeTags timeline,list_id,taskseries_id,task_id,tags
+rtm.tasks.setDueDate timeline,list_id,taskseries_id,task_id,due,has_due_time,parse
+rtm.tasks.setEstimate timeline,list_id,taskseries_id,task_id,estimate
+rtm.tasks.setLocation timeline,list_id,taskseries_id,task_id,location_id
+rtm.tasks.setName timeline,list_id,taskseries_id,task_id,name
+rtm.tasks.setParentTask timeline,parent_task_id,list_id,taskseries_id,task_id
+rtm.tasks.setPriority timeline,list_id,taskseries_id,task_id,priority
+rtm.tasks.setRecurrence timeline,list_id,taskseries_id,task_id,repeat
+rtm.tasks.setStartDate timeline,list_id,taskseries_id,task_id,start,has_start_time,parse
+rtm.tasks.setTags timeline,list_id,taskseries_id,task_id,tags
+rtm.tasks.setURL timeline,list_id,taskseries_id,task_id,url
+rtm.tasks.uncomplete timeline,list_id,taskseries_id,task_id
+rtm.test.echo
+rtm.test.login
+rtm.time.convert to_timezone,from_timezone,time
+rtm.time.parse text,timezone,dateformat
+rtm.timelines.create
+rtm.timezones.getList
+rtm.transactions.undo timeline,transaction_id
