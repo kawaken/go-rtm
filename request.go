@@ -65,11 +65,11 @@ type ClientOption func(*Client) error
 func NewClient(apiKey string, apiSecret string, options ...ClientOption) (*Client, error) {
 
 	if apiKey == "" {
-		return nil, fmt.Errorf("no apiKey")
+		return nil, fmt.Errorf("missing apiKey")
 	}
 
 	if apiSecret == "" {
-		return nil, fmt.Errorf("no apiSecret")
+		return nil, fmt.Errorf("missing apiSecret")
 	}
 
 	c := &Client{
