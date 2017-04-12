@@ -58,8 +58,11 @@ type Client struct {
 	httpClient *http.Client
 }
 
+// ClientOption is option
+type ClientOption func(*Client) error
+
 // NewClient returns a new RTM Client.
-func NewClient(apiKey string, apiSecret string) (*Client, error) {
+func NewClient(apiKey string, apiSecret string, options ...ClientOption) (*Client, error) {
 
 	if apiKey == "" {
 		return nil, fmt.Errorf("no apiKey")
@@ -69,12 +72,21 @@ func NewClient(apiKey string, apiSecret string) (*Client, error) {
 		return nil, fmt.Errorf("no apiSecret")
 	}
 
-	return &Client{
+	c := &Client{
 		apiKey:     apiKey,
 		apiSecret:  apiSecret,
 		endpoint:   APIEndpoint,
 		httpClient: http.DefaultClient,
-	}, nil
+	}
+
+	for _, o := range options {
+		err := o(c)
+		if err != nil {
+			return nil, err
+		}
+	}
+
+	return c, nil
 }
 
 // Do requests a RTM API method.
