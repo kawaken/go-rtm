@@ -2,12 +2,14 @@ package rtm
 
 import (
 	"bytes"
+	"context"
 	"crypto/md5"
 	"fmt"
 	"net/http"
 	"net/url"
 	"sort"
 	"strings"
+	"time"
 
 	"github.com/kawaken/go-rtm/methods"
 )
@@ -105,6 +107,19 @@ func WithEndpoint(endpoint string) ClientOption {
 	}
 }
 
+func (c *Client) do(req *http.Request) (*http.Response, error) {
+	req.Header.Set("User-Agent", "go-rtm-client")
+	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
+
+	ctx := context.Background()
+	ctx, cancel := context.WithTimeout(ctx, 5*time.Second)
+	defer cancel()
+
+	req.WithContext(ctx)
+
+	return c.httpClient.Do(req)
+}
+
 // Do requests a RTM API method.
 func (c *Client) Do(m *methods.Method) (*http.Response, error) {
 
@@ -120,7 +135,5 @@ func (c *Client) Do(m *methods.Method) (*http.Response, error) {
 		return nil, err
 	}
 
-	req.Header.Set("User-Agent", "go-rtm-client")
-	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
-	return c.httpClient.Do(req)
+	return c.do(req)
 }
