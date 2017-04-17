@@ -89,6 +89,22 @@ func NewClient(apiKey string, apiSecret string, options ...ClientOption) (*Clien
 	return c, nil
 }
 
+// WithHTTPClient is used to set HTTP Client
+func WithHTTPClient(c *http.Client) ClientOption {
+	return func(client *Client) error {
+		client.httpClient = c
+		return nil
+	}
+}
+
+// WithEndpoint is used to set endpoint
+func WithEndpoint(endpoint string) ClientOption {
+	return func(client *Client) error {
+		client.endpoint = endpoint
+		return nil
+	}
+}
+
 // Do requests a RTM API method.
 func (c *Client) Do(m *methods.Method) (*http.Response, error) {
 
